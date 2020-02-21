@@ -2,29 +2,23 @@ package acquire;
 
 public class Driver {
   
-  public static void main(String string) {
+  private void main() {
             
     }
   
-  private static void update(){
+  private void saveGame(){
 
     }
   
-  public static void runTurn(){
+  private void loadGame(){
 
     }
   
+  public void gameStart(){
+
+    }
   
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+  public void gameEnd(){
+
+    }
 }
