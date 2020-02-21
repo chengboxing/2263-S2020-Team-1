@@ -25,22 +25,22 @@ public class Player {
         return money;
     }
   
-  public int holdShare() {
+  private int holdShare() {
     
         return share;
     }
   
-   public int buyShare() {
+  public int buyShare() {
     
         return share;
     }
   
-  public int tradeShare() {
+  private int tradeShare() {
     
         return share;
     }
   
-  public int sellShare() {
+  private int sellShare() {
     
         return share;
     }
