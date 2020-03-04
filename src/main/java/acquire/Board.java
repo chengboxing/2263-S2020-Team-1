@@ -1,9 +1,10 @@
 package acquire;
 
+import java.util.HashMap;
+
 public class Board {
-    Tile[][] pieces = //do we want to build a factory class to make these?
-            ; //is here because the comment forced it to be on a separate line
-    Chain[] activeChains = new Chain[6];
+    private HashMap<String, Tile> Tiles = new HashMap();
+    private Chain[] activeChains = new Chain[6];
 
 
     public boolean canPlayTile(Tile toPlay){
@@ -21,5 +22,6 @@ public class Board {
 
     public boolean canEnd(){
         //checks if end conditions are met
+        return false;
     }
 }

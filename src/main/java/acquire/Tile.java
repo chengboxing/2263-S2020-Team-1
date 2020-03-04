@@ -5,4 +5,10 @@ public class Tile {
     int locationX;
     int locationY;
 
+    //Constructor
+    private Tile(Character x, Character y){
+        this.locationX = x;
+        this.locationY = y;
+    }
+
 }
