@@ -5,6 +5,8 @@ import java.util.HashMap;
 public class Board {
     private HashMap<String, Tile> Tiles = new HashMap();
     private Chain[] activeChains = new Chain[6];
+    //private HashMap<String, Tile> Tiles = new HashMap();
+    //private Chain[] activeChains = new Chain[6];
 
 
     public boolean canPlayTile(Tile toPlay){
