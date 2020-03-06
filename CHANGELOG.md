@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [0.0.1] - 2014-05-31
+## [0.0.1] - 2020-03-05
 
 ### Added
 
@@ -20,4 +20,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
                     Fixed for any bug fixes.
                     Security in case of vulnerabilities.
                 
-[0.0.1]:                  
+
+[0.0.1]: https://github.com/cs3321isu/2263-S2020-Team-1/releases/tag/v0.0.1                  
