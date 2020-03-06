@@ -12,6 +12,7 @@ public class Tile {
     public Tile(String x){
         this.locationX = String.valueOf(x.charAt(0));
         this.locationY = String.valueOf(x.subSequence(1, x.length()));
+        this.tiletype = tf.getTileType("empty");
     }
 
     public String getLocation(){
