@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.2] - 2020-03-05
+
+### Added
+
+- Test.
+
 ## [0.0.1] - 2020-03-05
 
 ### Added
@@ -20,5 +26,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
                     Fixed for any bug fixes.
                     Security in case of vulnerabilities.
                 
-
+[unreleased]: https://github.com/cs3321isu/2263-S2020-Team-1/compare/v0.0.2...HEAD
+[0.0.2]: https://github.com/cs3321isu/2263-S2020-Team-1/compare/v0.0.1...v0.0.2
 [0.0.1]: https://github.com/cs3321isu/2263-S2020-Team-1/releases/tag/v0.0.1                  
