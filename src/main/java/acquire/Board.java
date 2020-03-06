@@ -10,12 +10,19 @@ public class Board {
     public Board(){
         //creates 108 tiles
         for (char c = 'A'; c < 'J'; c++){
-            for (int r = 1; r <= 11; r++){
+            for (int r = 1; r < 13; r++){
                 //stores the tiles in a 2d array
-                tiles[c-65][r] = factory.getTile("c"+"r");
+                tiles[c-65][r-1] = factory.getTile( (c +Integer.toString(r)));
+                System.out.println(c + Integer.toString(r) + "was created");
 
             }
         }
+    }
+
+    public Tile getTile(String s){
+        int x = (s.charAt(0) - 65);
+        int y = Integer.parseInt(s.substring(1)) -1 ;
+        return this.tiles[x][y];
     }
 
 

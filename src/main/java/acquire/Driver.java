@@ -15,12 +15,13 @@ import javafx.stage.Stage;
 
 public class Driver extends Application {
 
-    private Board board = new Board();
+    private Board board;
 
 
   @Override
   public void start(Stage primaryStage) throws Exception{
 
+      board = new Board();
     primaryStage.setTitle("Acquire");
     primaryStage.setScene(new Scene(createContent()));
     primaryStage.show();
@@ -61,22 +62,26 @@ public class Driver extends Application {
        n=0;
 
        //Each tile is created on the board using a for loop.
-       for (int i= 0; i<9; i++){
-           for (int j=0; j<12; j++){
-               text = new Text(s[n]);
-               n+=1;
-               Tile tile = new Tile();
-               tile.setTranslateX(j*50);
-               tile.setTranslateY(i * 50);
-              
-               root.getChildren().addAll(tile);
-           }
+     for (char c = 'A'; c < 'J'; c++){
+       for (int r = 1; r < 13; r++){
+
+           Tile t = board.getTile(c + Integer.toString(r));
+           text = new Text(t.getLocation());
+           TileDrawing tile = new TileDrawing(t);
+           tile.setTranslateX((r-1)*50);
+           tile.setTranslateY((c-65) * 50);
+
+           root.getChildren().add(tile);
        }
+     }
    }
 
     
-  private class Tile extends StackPane {
-    public Tile(){
+  private class TileDrawing extends StackPane {
+       Tile tile;
+
+    public TileDrawing(Tile t){
+        this.tile = t;
       Rectangle border = new Rectangle(50, 50);
       //Color of Tile is set to white and the outline is set to black.
       border.setFill(Color.WHITE);
@@ -88,6 +93,10 @@ public class Driver extends Application {
       //Temporary hard code: Clicking on the tiles will change the color from white to
       //light blue. This is done just so we can get used ti the javaFX colors.
       setOnMouseClicked(event -> border.setFill(Color.LIGHTBLUE));
+    }
+
+    public String getLocation(){
+        return tile.getLocation();
     }
   }
 
