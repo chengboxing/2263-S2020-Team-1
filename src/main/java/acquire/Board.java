@@ -5,6 +5,7 @@ public class Board {
             ; //is here because the comment forced it to be on a separate line
     Chain[] activeChains = new Chain[6];
 
+    //These branches can be automatically merged.
 
     public boolean canPlayTile(Tile toPlay){
         return false;
