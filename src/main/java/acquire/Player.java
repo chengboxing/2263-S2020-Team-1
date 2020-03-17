@@ -4,7 +4,7 @@ public class Player {
   
   private int ID;
   private int money;
-  private int tile;
+  private Tile[] tile;
   private int stock;
   private int share;
   

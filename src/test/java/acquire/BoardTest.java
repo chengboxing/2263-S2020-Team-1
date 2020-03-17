@@ -17,6 +17,8 @@ public class BoardTest {
 
     @Test
     public void boardMaxChainTest(){
+        //create 7 chains
+        //attempt to create another, but will not get created
         fail();
     }
 }

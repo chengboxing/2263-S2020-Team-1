@@ -14,4 +14,9 @@ public class PlayerTest {
     public void negativeNetWorthTest(){
         fail();
     }
+
+    @Test
+    public void maxTiles(){
+        fail();
+    }
 }
