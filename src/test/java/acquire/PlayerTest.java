@@ -12,6 +12,8 @@ public class PlayerTest {
 
     @Test
     public void negativeNetWorthTest(){
+        Player p = new Player("p");
+        p.getWorth();
         fail();
     }
 

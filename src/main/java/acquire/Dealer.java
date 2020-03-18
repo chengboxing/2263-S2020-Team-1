@@ -7,8 +7,8 @@ public class Dealer {
     LinkedList playerOrder = new LinkedList(); //Needs to be changed to CircularlyLinkedList
 
     //Dealer checks and assigns an eligible tile to a player after they place a tile on the board. 
-    public void dealTile(){
-
+    public Tile dealTile(){
+        return null;
     }
     
     //Dealer removes the tile, which has been assigned to a player, from the pile in the bank.
@@ -20,6 +20,10 @@ public class Dealer {
     //next player.
     public void moveTurn(){
 
+    }
+
+    public void addPlayer(Player p){
+        this.playerOrder.add(p);
     }
 
 }
