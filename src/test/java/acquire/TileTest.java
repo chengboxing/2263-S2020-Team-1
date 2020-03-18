@@ -9,7 +9,7 @@ public class TileTest {
     public void tileLocationTest(){
         TileFactory tf = TileFactory.getTileFactory();
         Tile actual = tf.getTile("a1");
-        assertTrue("Does not return the location correctly", "a1" == actual.getLocation());
+        assertEquals("Does not return the location correctly", "a1", actual.getLocation());
     }
 
     @Test

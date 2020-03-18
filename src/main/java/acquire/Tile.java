@@ -1,5 +1,7 @@
 package acquire;
 
+import javafx.scene.paint.Color;
+
 public class Tile {
     //Location X and Y initialized for the location on the Board
     private TileFactory tf = TileFactory.getTileFactory();
@@ -21,6 +23,10 @@ public class Tile {
 
     public Tile getTile(String s){
         return tf.getTile(s);
+    }
+
+    public Color getColor(){
+        return tiletype.getColor();
     }
 
 }
