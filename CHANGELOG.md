@@ -11,7 +11,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Added the Board Data Structure.
+- Added additional Tests to most classes
+- Set up Travic CI and Build File
+- Created Circularly linked listlike Structure for Player order
+- Added a start screen, working on functionality
+- Added Basic Dealer Funcion
 
 
 ## [0.0.2 (Iteration 3)] - 2020-03-06
