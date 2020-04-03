@@ -13,7 +13,7 @@ public class Board {
             for (int r = 1; r < 13; r++){
                 //stores the tiles in a 2d array
                 tiles[c-65][r-1] = factory.getTile( (c +Integer.toString(r)));
-                System.out.println(c + Integer.toString(r) + "was created");
+                //System.out.println(c + Integer.toString(r) + "was created");
 
             }
         }

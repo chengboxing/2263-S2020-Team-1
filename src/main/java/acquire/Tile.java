@@ -7,6 +7,7 @@ public class Tile {
     private TileFactory tf = TileFactory.getTileFactory();
     private String locationX;
     private String locationY;
+    private boolean canDeal = true;
 
     private TileType tiletype;
 
@@ -27,6 +28,14 @@ public class Tile {
 
     public Color getColor(){
         return tiletype.getColor();
+    }
+
+    public boolean dealable(){
+        return this.canDeal;
+    }
+
+    public void play(){
+        this.canDeal = false;
     }
 
 }
