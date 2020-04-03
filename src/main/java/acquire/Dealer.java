@@ -22,8 +22,15 @@ public class Dealer {
 
     }
 
+
     public void addPlayer(Player p){
         this.playerOrder.add(p);
     }
+
+
+    public Player getPlayer(){
+        return null;
+    }
+
 
 }
