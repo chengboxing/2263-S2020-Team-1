@@ -41,9 +41,5 @@ public class DealerTest {
             d.moveTurn();
         }
     }
-
-    @Test
-    public void moveTurnTest(){
-        fail();
-    }
+    
 }
