@@ -22,4 +22,10 @@ public class Dealer {
 
     }
 
+    public Player getPlayer(){
+        return null;
+    }
+
+
+
 }
