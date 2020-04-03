@@ -22,15 +22,15 @@ public class DealerTest {
     }
 
     @Test
-    public void dealTile() {
+    public void dealTileTests() {
     }
 
     @Test
-    public void removeFromPile() {
+    public void removeFromPileTests() {
     }
 
     @Test
-    public void moveTurn() {
+    public void moveTurnTest() {
         Dealer d = new Dealer();
         Player[] players = new Player[3];
         for (int i = 0; i < 3; i++) {
@@ -38,7 +38,7 @@ public class DealerTest {
         }
         for (int i = 0; i < 3; i++) {
             assertEquals(players[i], d.getPlayer());
-            moveTurn();
+            d.moveTurn();
         }
     }
 

@@ -5,6 +5,7 @@ import java.util.LinkedList;
 public class Dealer {
     Tile[][] pile;
     LinkedList playerOrder = new LinkedList(); //Needs to be changed to CircularlyLinkedList
+    Player currentPlayer = null;
 
     //Dealer checks and assigns an eligible tile to a player after they place a tile on the board. 
     public Tile dealTile(){
