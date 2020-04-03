@@ -15,12 +15,12 @@ public class DealerTest {
 
     @Test
     public void duplicateTileDealtTest(){
-        //deal a tile, find that same tile in the board, and see if they are both undealable
+        //deal all 108 tiles, and make sure there are no duplicates
         fail();
     }
 
     @Test
-    public void dealTileTests() {
+    public void dealTileTest() {
     }
 
     @Test
