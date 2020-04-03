@@ -34,15 +34,20 @@ public class Driver extends Application {
 
     }
 
-    //
+    //Desc: This method creates the objects for the start screen including texts, fields and buttons. 
+    //Return: A BorderPane is returned. 
     protected BorderPane startScreen() {
 
+        //Heading
         Text text = new Text("Welcome to Aquire!");
         text.setFill(Color.BLACK);
         text.setStyle("-fx-font: 54 arial;");
 
+        //The vertical box is created to add objects to the Border Pane
+        //Consists of a Horizontal Box and a text
         VBox texts = new VBox(100);
 
+        //The horizontal box consists of texts, fields and a start game button.
         HBox list = new HBox(20);
         Text t1 = new Text("Start a new game:      ");
         t1.setStyle("-fx-font: 35 arial;");
@@ -52,13 +57,16 @@ public class Driver extends Application {
         Button b1 = new Button("Start Game");
         list.getChildren().addAll(t1, t2, tf1, b1);
 
+        //the text indicates this section of the BorderPane is for loading games
+        //The options for peviously played games are to be added soon. 
         Text t = new Text("Load game: ");
         t.setStyle("-fx-font: 35 arial;");
         texts.setAlignment(Pos.CENTER_LEFT);
 
-        texts.getChildren().addAll(list, t);
-
-
+        texts.getChildren().addAll(list, t);  
+        
+        //When the start game button is clicked, the start screen is hidden and the Acquire
+        //board is shown
         b1.setOnAction(e -> {
             Stage stage = createContent(mainStage, b1.getText());
             mainStage.hide();
@@ -66,6 +74,7 @@ public class Driver extends Application {
 
         });
 
+        //The positioning of heading and the vertical box is set on the BorderPane
         BorderPane pane = new BorderPane();
         pane.setTop(text);
         pane.setLeft(texts);
