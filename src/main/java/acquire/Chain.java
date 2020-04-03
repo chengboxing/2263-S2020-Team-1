@@ -12,8 +12,9 @@ public class Chain {
         return false;
     }
     
-    //This method merges two or more hotel chains into the one that is bigger. 
-    public void merge(){
+    //This method merges two or more hotel chains into the one that is bigger.
+    //targetChain is the chain to merge into
+    public void merge(Chain targetChain){
         //this chain should no longer exist, and the chain merged into should be the size of both put together.
     }
 

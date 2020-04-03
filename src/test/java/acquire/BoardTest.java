@@ -7,6 +7,7 @@ public class BoardTest {
 
     @Test
     public void boardCanPlayTest(){
+        //requires chains to be implemented.
         fail();
     }
 

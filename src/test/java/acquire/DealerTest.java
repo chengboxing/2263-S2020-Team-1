@@ -33,13 +33,17 @@ public class DealerTest {
     public void moveTurn() {
         Dealer d = new Dealer();
         Player[] players = new Player[3];
-        for (int i = 0; i <3; i++){
-            players[i] = new Player(i);
+        for (int i = 0; i < 3; i++) {
+            players[i] = new Player(Integer.toString(i));
         }
-        for (int i = 0; i <3; i++){
+        for (int i = 0; i < 3; i++) {
             assertEquals(players[i], d.getPlayer());
             moveTurn();
         }
+    }
 
+    @Test
+    public void moveTurnTest(){
+        fail();
     }
 }

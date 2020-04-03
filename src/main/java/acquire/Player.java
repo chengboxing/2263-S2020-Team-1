@@ -49,4 +49,12 @@ public class Player {
       //when we add in the stock, this will calculate the stocks value and add it to money
       return this.money;
     }
+
+    public void subtractWorth(int v){
+      if(this.money >= v){
+          this.money -= v;
+      }else{
+          this.money = 0;
+      }
+    }
 }
