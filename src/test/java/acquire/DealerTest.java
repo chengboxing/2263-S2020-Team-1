@@ -2,8 +2,6 @@ package acquire;
 
 import org.junit.*;
 
-import java.util.ArrayList;
-
 import static org.junit.Assert.*;
 
 public class DealerTest {

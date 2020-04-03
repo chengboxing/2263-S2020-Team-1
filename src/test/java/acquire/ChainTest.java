@@ -8,7 +8,6 @@ public class ChainTest {
     @Test
     public void chainSizeTest(){
         fail();
-
     }
 
     @Test

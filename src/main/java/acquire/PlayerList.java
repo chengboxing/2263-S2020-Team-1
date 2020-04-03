@@ -142,4 +142,8 @@ public class PlayerList <E> {
 
         return this.current;
     }
+
+    public Object getCurrent(){
+        return this.current;
+    }
 }
