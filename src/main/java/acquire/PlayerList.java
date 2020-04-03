@@ -9,27 +9,27 @@ public class PlayerList <E> {
     private Node current= null;
     private Node tail = null;
 
-    private static class Node<E>{
-        private E element;
-        private Node<E> next;
-        public Node(E e, Node<E> n){
+    private static class Node<Player>{
+        private Player element;
+        private Node<Player> next;
+        public Node(Player e, Node<Player> n){
             element = e;
             next = n;
         }
 
 
         //returns the value
-        public E getElement(){
+        public Player getPlayer(){
             return element;
         }
 
         //goes to the next
-        public Node<E> getNext(){
+        public Node<Player> getNext(){
             return next;
         }
 
         //sets the value in the node
-        public void setNext(Node<E> n){
+        public void setNext(Node<Player> n){
             next = n;
         }
     }
@@ -40,7 +40,7 @@ public class PlayerList <E> {
             return null;
         } else {
 
-            return head.getElement();
+            return head.getPlayer();
         }
     }
 
@@ -97,7 +97,7 @@ public class PlayerList <E> {
         } else {
             Node current = head;
             for (int i = 0; i < size; i++) {
-                System.out.println(current.getElement());
+                System.out.println(current.getPlayer());
                 current = current.getNext();
             }
 
@@ -143,7 +143,7 @@ public class PlayerList <E> {
         return this.current;
     }
 
-    public Object getCurrent(){
-        return this.current;
+    public Player getCurrent(){
+        return (Player) this.current.getPlayer();
     }
 }

@@ -5,7 +5,7 @@ import java.util.Random;
 
 public class Dealer {
     LinkedList<Tile> pile;
-    LinkedList playerOrder = new LinkedList();
+    PlayerList<Player> playerOrder = new PlayerList();
     TileFactory factory = TileFactory.getTileFactory();
     Random rng = new Random();
 
@@ -46,12 +46,12 @@ public class Dealer {
 
 
     public void addPlayer(Player p){
-        this.playerOrder.add(p);
+        this.playerOrder.addLast(p);
     }
 
 
     public Player getPlayer(){
-        return null;
+        return this.playerOrder.getCurrent();
     }
 
 
