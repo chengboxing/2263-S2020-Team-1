@@ -26,8 +26,8 @@ public class PlayerTest {
     @Test
     public void negativeNetWorthTest(){
         Player p = new Player("p");
-        int subtractiion = p.getWorth();
-        p.subtractWorth(subtractiion + 100);
+        int subtraction = p.getWorth();
+        p.subtractWorth(subtraction + 100);
         assertEquals("Was able to get a negative worth", 0, p.getWorth());
     }
 
