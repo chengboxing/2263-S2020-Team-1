@@ -1,11 +1,13 @@
 package acquire;
 
 import java.util.LinkedList;
+import javafx.scene.paint.Color;
 
 public class Chain {
     private String name;
     private LinkedList tilesInChain;
     private int stocksOwned;
+    private Color chainColor;
 
     //This method checks to see if stocks are available under a certain chain and can be sold to the player.
     private boolean canSellStock(){
@@ -20,6 +22,10 @@ public class Chain {
 
     public int chainSize(){
         return this.tilesInChain.size();
+    }
+
+    public String getName(){
+        return this.name;
     }
 
     public void addTile(Tile t){

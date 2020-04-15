@@ -19,11 +19,11 @@ public class TileFactory {
         return instance;
     }
 
-    public TileType getTileType(String c) {
+    public TileType getTileType(int c) {
         if (!this.types.containsKey(c)){
-            this.types.put(c, new TileType());
+            this.types.put(String.valueOf(c), new TileType());
         }
-        return this.types.get(c);
+        return this.types.get(String.valueOf(c));
     }
 
     // checks to see if the tile exists, and if it does returns it.

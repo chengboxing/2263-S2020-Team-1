@@ -15,12 +15,12 @@ import javafx.stage.Stage;
 
 public class TileType{
 
-    private Color c = new Color(0,0,0,0);
-
+    //get the color of the chain it is contained in.
+    private Color c;
     Rectangle border = new Rectangle(50, 50);
 
-    public void setColor(Color color){
-        this.c = color;
+    public TileType(int c){
+        //get the chain, and the color of the chain.
     }
 
     public Color getColor(){

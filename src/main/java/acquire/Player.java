@@ -4,7 +4,7 @@ public class Player {
   
   private String ID;
   private int money;
-  private Tile[] tile;
+  private Tile[] hand;
   private int stock;
   private int share;
   
@@ -50,7 +50,11 @@ public class Player {
       return this.money;
     }
 
-    public void subtractWorth(int v){
+    public Tile[] getHand(){
+      return this.hand;
+    }
+
+    public void subtractMoney(int v){
       if(this.money >= v){
           this.money -= v;
       }else{
