@@ -8,6 +8,15 @@ public class Chain {
     private LinkedList tilesInChain;
     private int stocksOwned;
     private Color chainColor;
+    
+    public Chain(String n, Color c, Tile[] tiles){
+        this.name = n;
+        this.chainColor = c;
+        for (Tile tile: tiles
+             ) {
+            tilesInChain.add(tile);
+        }
+    }
 
     //This method checks to see if stocks are available under a certain chain and can be sold to the player.
     private boolean canSellStock(){

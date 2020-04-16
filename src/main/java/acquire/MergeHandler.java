@@ -12,12 +12,12 @@ public class MergeHandler {
     //we will likely need to pass the players who own stock in the chain to here
     public void mergeChains(Chain[] chains){
         //find which chain is larger.
-         chain 1 is 7 large
-            chain 2 is 9 large
-
-            chain 2 is bigger
-
-                chain1.merge(chain2);
+//         chain 1 is 7 large
+//            chain 2 is 9 large
+//
+//            chain 2 is bigger
+//
+//                chain1.merge(chain2);
         //call merge on the chain.
 
         //will call all the private methods to determine how to merge
