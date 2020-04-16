@@ -18,6 +18,9 @@ public class Chain {
     //targetChain is the chain to merge into
     public void merge(Chain targetChain){
         //this chain should no longer exist, and the chain merged into should be the size of both put together.
+        while(!this.tilesInChain.isEmpty()){
+            targetChain.addTile((Tile) this.tilesInChain.removeFirst());
+        }
     }
 
     public int chainSize(){
