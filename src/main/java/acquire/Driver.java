@@ -177,6 +177,7 @@ public class Driver extends Application {
     List<Button> buttons2 = new ArrayList<>();
 
     private void createChainLists(){
+        //split button outside of chain class. Draw a button per chain that uses the info it needs from each chain (if possible)
         txt.add("T"); txt.add("I"); txt.add("C"); txt.add("W"); txt.add("L"); txt.add("F"); txt.add("A");
         c.add(Color.YELLOW); c.add(Color.PINK); c.add(Color.LIGHTBLUE); c.add(Color.BROWN);
         c.add(Color.RED); c.add(Color.GREEN); c.add(Color.BLUE);
@@ -184,6 +185,7 @@ public class Driver extends Application {
         buttons1.add(b1 = new Button()); buttons1.add(b2 = new Button()); buttons1.add(b3 = new Button());
         buttons1.add(b4= new Button()); buttons1.add(b5= new Button()); buttons1.add(b6= new Button());
         buttons1.add(b7= new Button());
+        //should have all the colors parsed into the flyweight.
 
 
     }
@@ -230,6 +232,7 @@ public class Driver extends Application {
     }
 
     Tile t;
+    //all tiles start as black, when we check for neighboring tiles we can adjust their color.
     private void placeBlackTile(String[] tiles, int i) {
         t = board.getTile(tiles[i]);
         text = new Text(t.getLocation());
@@ -475,6 +478,9 @@ public class Driver extends Application {
 
     private class TileDrawing extends StackPane {
         Tile tile;
+
+        //modify color to come from flyweight pattern.
+        //modify str to come from tile.getLocation
 
         public TileDrawing(Tile t, String str, Color c) {
             this.tile = t;

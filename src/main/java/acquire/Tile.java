@@ -31,6 +31,10 @@ public class Tile {
         return tiletype.getColor();
     }
 
+    public void setType(int ch){
+        this.tiletype = tf.getTileType(ch);
+    }
+
     public boolean dealable(){
         return this.canDeal;
     }
