@@ -40,7 +40,6 @@ public class Driver extends Application {
     //Desc: This method creates the objects for the start screen including texts, fields and buttons. 
     //Return: A BorderPane is returned. 
     protected BorderPane startScreen() {
-<<<<<<< Updated upstream
 
         //Heading
         Text text = new Text("Welcome to Aquire!");
@@ -52,12 +51,6 @@ public class Driver extends Application {
         VBox texts = new VBox(100);
 
         //The horizontal box consists of texts, fields and a start game button.
-=======
-        Text text = new Text("Welcome to Aquire!");
-        text.setFill(Color.BLACK);
-        text.setStyle("-fx-font: 54 arial;");
-        VBox texts = new VBox(100);
->>>>>>> Stashed changes
         HBox list = new HBox(20);
         Text t1 = new Text("Start a new game:      ");
         t1.setStyle("-fx-font: 35 arial;");
@@ -66,7 +59,6 @@ public class Driver extends Application {
         TextField tf1 = new TextField();
         Button b1 = new Button("Start Game");
         list.getChildren().addAll(t1, t2, tf1, b1);
-<<<<<<< Updated upstream
 
         //the text indicates this section of the BorderPane is for loading games
         //The options for peviously played games are to be added soon. 
@@ -78,23 +70,14 @@ public class Driver extends Application {
         
         //When the start game button is clicked, the start screen is hidden and the Acquire
         //board is shown
-=======
-        Text t = new Text("Load game: ");
-        t.setStyle("-fx-font: 35 arial;");
-        texts.setAlignment(Pos.CENTER_LEFT);
-        texts.getChildren().addAll(list, t);
->>>>>>> Stashed changes
         b1.setOnAction(e -> {
             Stage stage = createContent(mainStage, b1.getText());
             mainStage.hide();
             stage.show();
 
         });
-<<<<<<< Updated upstream
 
         //The positioning of heading and the vertical box is set on the BorderPane
-=======
->>>>>>> Stashed changes
         BorderPane pane = new BorderPane();
         pane.setTop(text);
         pane.setLeft(texts);
