@@ -9,6 +9,7 @@ public class Chain {
     private int stocksOwned;
     private Color chainColor;
 
+
     public Chain(String n, Color c, Tile[] tiles){
         this.name = n;
         this.chainColor = c;
@@ -22,7 +23,7 @@ public class Chain {
     private boolean canSellStock(){
         return false;
     }
-
+    
     //This method merges two or more hotel chains into the one that is bigger.
     //targetChain is the chain to merge into
     public void merge(Chain targetChain){

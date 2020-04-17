@@ -23,8 +23,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class Driver extends Application {
 
     private Board board;
-    private Stage mainStage;
 
+    private Stage mainStage;
 
     @Override
     public void start(Stage stage) throws Exception {

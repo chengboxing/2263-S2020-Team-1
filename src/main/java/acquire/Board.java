@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 public class Board {
     private Tile[][] tiles = new Tile[9][12];
-    private Chain[] activeChains = new Chain[6];
+    private Chain[] activeChains = new Chain[7];
     private TileFactory factory = TileFactory.getTileFactory();
 
     public Board(){
