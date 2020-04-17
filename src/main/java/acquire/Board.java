@@ -1,10 +1,12 @@
 package acquire;
 
+import javafx.scene.paint.Color;
+
 import java.util.HashMap;
 
 public class Board {
     private Tile[][] tiles = new Tile[9][12];
-    private Chain[] activeChains = new Chain[6];
+    private Chain[] activeChains = new Chain[7];
     private TileFactory factory = TileFactory.getTileFactory();
 
     public Board(){
@@ -25,19 +27,28 @@ public class Board {
         return this.tiles[x][y];
     }
 
-    //These branches can be automatically merged.
 
     public boolean canPlayTile(Tile toPlay){
         return false;
     }
 
     public void placeTile(Tile toPlay){
-
+        // culmination of methods Janita made, then send it to the ui frontend.
     }
 
     //placeTile will call this if the placed tile would cause a merge
     private void mergeChains(){
 
+    }
+
+    public void addChain(String n, Color c, Tile[] tiles, int chainNum){
+        if(getActiveChains().length <= 7){
+            this.activeChains[getActiveChains().length +1] = new Chain(n, c, tiles, chainNum);
+        }
+    }
+
+    public Chain[] getActiveChains(){
+        return this.activeChains;
     }
 
     public boolean canEnd(){

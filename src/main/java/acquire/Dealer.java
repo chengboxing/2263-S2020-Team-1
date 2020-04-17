@@ -4,12 +4,21 @@ import java.util.LinkedList;
 import java.util.Random;
 
 public class Dealer {
-    LinkedList<Tile> pile;
-    PlayerList<Player> playerOrder = new PlayerList();
-    TileFactory factory = TileFactory.getTileFactory();
-    Random rng = new Random();
+    private LinkedList<Tile> pile;
+    private PlayerList<Player> playerOrder = new PlayerList();
+    private TileFactory factory = TileFactory.getTileFactory();
+    private Random rng = new Random();
+    private static Dealer instance;
 
-    public Dealer(){
+    //turns dealer into a singleton
+    public static Dealer getDealerInstance(){
+        if(instance == null){
+            instance = new Dealer();
+        }
+        return instance;
+    }
+
+    private Dealer(){
         //creates the pile
         for (char c = 'A'; c < 'J'; c++){
             for (int r = 1; r < 13; r++){
