@@ -5,14 +5,16 @@ import javafx.scene.paint.Color;
 
 public class Chain {
     private String name;
+    private int chainNumber;
     private LinkedList tilesInChain;
     private int stocksOwned;
     private Color chainColor;
 
 
-    public Chain(String n, Color c, Tile[] tiles){
+    public Chain(String n, Color c, Tile[] tiles, int chainNum){
         this.name = n;
         this.chainColor = c;
+        this.chainNumber = chainNum;
         for (Tile tile: tiles
              ) {
             tilesInChain.add(tile);
@@ -42,6 +44,7 @@ public class Chain {
     }
 
     public void addTile(Tile t){
+        t.changeChain(this.chainNumber);
         this.tilesInChain.add(t);
     }
 
