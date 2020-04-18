@@ -8,7 +8,8 @@ public class Chain {
     private LinkedList tilesInChain;
     private int stocksOwned;
     private Color chainColor;
-    
+
+
     public Chain(String n, Color c, Tile[] tiles){
         this.name = n;
         this.chainColor = c;
