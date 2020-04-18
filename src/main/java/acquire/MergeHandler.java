@@ -1,6 +1,9 @@
 package acquire;
 
+import java.util.Random;
+
 public class MergeHandler {
+
 
     //is this class going to interact with the players directly
     //or is it going to pass the info to the board, which
@@ -10,10 +13,33 @@ public class MergeHandler {
     //to make this easier?
 
     //we will likely need to pass the players who own stock in the chain to here
-    public void mergeChains(Player[] players){
+    public void mergeChains(Chain[] chains){
+        Random random = new Random();
+        //find which chain is larger.
+        if (chains[0].chainSize() > chains[1].chainSize()){
+            chains[1].merge(chains[0]);
+        }
+        //call merge on the chain.
+
+        //if the two chains are equal in size
+        else if (chains[0].chainSize() == chains[1].chainSize()){
+            int randomNumber = random.nextInt();
+
+            if (randomNumber < 0.5){
+                chains[1].merge(chains[0]);
+            }
+            else {
+                chains[0].merge(chains[1]);
+            }
+        }
+        else if (chains[0].chainSize() < chains[1].chainSize()){
+            chains[0].merge(chains[1]);
+        }
+        else {
+            System.out.println("Errors(mergeChains)");
+        }
 
         //will call all the private methods to determine how to merge
-
     }
 
     //checks the Players count of stocks to search for ties

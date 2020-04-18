@@ -15,7 +15,8 @@ public class Tile {
     public Tile(String x){
         this.locationX = String.valueOf(x.charAt(0));
         this.locationY = String.valueOf(x.subSequence(1, x.length()));
-        this.tiletype = tf.getTileType("empty");
+        //0 is the null chain value
+        this.tiletype = tf.getTileType(0);
     }
 
     public String getLocation(){
@@ -30,12 +31,20 @@ public class Tile {
         return tiletype.getColor();
     }
 
+    public void setType(int ch){
+        this.tiletype = tf.getTileType(ch);
+    }
+
     public boolean dealable(){
         return this.canDeal;
     }
 
     public void play(){
         this.canDeal = false;
+    }
+
+    public void changeChain(int chain){
+        this.tiletype = tf.getTileType(chain);
     }
 
 }

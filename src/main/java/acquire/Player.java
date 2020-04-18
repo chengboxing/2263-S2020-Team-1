@@ -1,18 +1,27 @@
 package acquire;
 
+import java.util.LinkedList;
+import java.util.List;
+
 public class Player {
   
   private String ID;
   private int money;
-  private Tile[] tile;
+  private List<Tile> hand;
   private int stock;
   private int share;
+  private Dealer d;
   
   
   public Player(String ID){
     
     this.ID = ID;
     this.money = 6000; //$6000 is the starting cash
+      this.d = Dealer.getDealerInstance();
+
+      for (int i = 0; i < 6; i++) {
+          hand.add(d.dealTile());
+      }
     }
   
   public String getID() {
@@ -50,7 +59,19 @@ public class Player {
       return this.money;
     }
 
-    public void subtractWorth(int v){
+    public List<Tile> getHand(){
+      return this.hand;
+    }
+
+    public void playTile(Tile t){
+      if(this.hand.contains(t)){
+          hand.remove(t);
+          hand.add(d.dealTile());
+          t.play();
+      }
+    }
+
+    public void subtractMoney(int v){
       if(this.money >= v){
           this.money -= v;
       }else{
