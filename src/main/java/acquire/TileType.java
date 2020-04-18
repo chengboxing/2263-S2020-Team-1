@@ -27,4 +27,3 @@ public class TileType{
         return this.c;
     }
 }
-
