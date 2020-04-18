@@ -8,7 +8,7 @@ public class Tile {
     private String locationX;
     private String locationY;
     private boolean canDeal = true;
-
+    private boolean isPlayed = false;
     private TileType tiletype;
 
     //Constructor
@@ -28,7 +28,10 @@ public class Tile {
     }
 
     public Color getColor(){
-        return tiletype.getColor();
+        if(this.isPlayed) {
+            return tiletype.getColor();
+        }
+        return Color.WHITE;
     }
 
     public boolean dealable(){
@@ -37,6 +40,7 @@ public class Tile {
 
     public void play(){
         this.canDeal = false;
+        this.isPlayed = true;
     }
 
     public void changeChain(int chain){

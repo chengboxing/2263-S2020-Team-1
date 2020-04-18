@@ -2,13 +2,26 @@ package acquire;
 
 import java.util.LinkedList;
 import javafx.scene.paint.Color;
+import sun.awt.image.ImageWatched;
 
 public class Chain {
     private String name;
     private LinkedList tilesInChain;
     private int stocksOwned;
     private Color chainColor;
+    private boolean hasButton = false;
 
+<<<<<<< Updated upstream
+=======
+
+    public Chain(String n, Color c, int chainNum){
+        this.name = n;
+        this.chainColor = c;
+        this.chainNumber = chainNum;
+        this.tilesInChain = new LinkedList();
+    }
+
+>>>>>>> Stashed changes
     //This method checks to see if stocks are available under a certain chain and can be sold to the player.
     private boolean canSellStock(){
         return false;
@@ -28,6 +41,9 @@ public class Chain {
         return this.name;
     }
 
+    public LinkedList<Tile> getTilesInChain(){
+        return this.tilesInChain;
+    }
     public void addTile(Tile t){
         this.tilesInChain.add(t);
     }

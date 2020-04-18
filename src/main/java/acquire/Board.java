@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 public class Board {
     private Tile[][] tiles = new Tile[9][12];
-    private Chain[] activeChains = new Chain[7];
+    private Chain[] activeChains = new Chain[8];
     private TileFactory factory = TileFactory.getTileFactory();
 
     public Board(){
@@ -40,6 +40,19 @@ public class Board {
 
     }
 
+<<<<<<< Updated upstream
+=======
+    public void addChain(String n, Color c, int chainNum){
+        if(getActiveChains().length < 7){
+            this.activeChains[chainNum] = new Chain(n, c, chainNum);
+        }
+    }
+
+    public Chain[] getActiveChains(){
+        return this.activeChains;
+    }
+
+>>>>>>> Stashed changes
     public boolean canEnd(){
         //checks if end conditions are met
         return false;

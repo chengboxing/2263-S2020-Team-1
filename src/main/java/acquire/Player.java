@@ -4,7 +4,11 @@ public class Player {
   
   private String ID;
   private int money;
+<<<<<<< Updated upstream
   private Tile[] hand;
+=======
+  private LinkedList<Tile> hand;
+>>>>>>> Stashed changes
   private int stock;
   private int share;
   
@@ -13,6 +17,14 @@ public class Player {
     
     this.ID = ID;
     this.money = 6000; //$6000 is the starting cash
+<<<<<<< Updated upstream
+=======
+      this.d = Dealer.getDealerInstance();
+      this.hand = new LinkedList<Tile>();
+      for (int i = 0; i < 6; i++) {
+          hand.add(d.dealTile());
+      }
+>>>>>>> Stashed changes
     }
   
   public String getID() {
@@ -50,7 +62,11 @@ public class Player {
       return this.money;
     }
 
+<<<<<<< Updated upstream
     public Tile[] getHand(){
+=======
+    public LinkedList<Tile> getHand(){
+>>>>>>> Stashed changes
       return this.hand;
     }
 
