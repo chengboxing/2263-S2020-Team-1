@@ -12,6 +12,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Added MergeHandler Funcion
+- Added ability to have tiles in hand
+- Added ability to place tiles
+- Added ability to create chains
+- Added ability for new tiles to be placed into adjacent chains
+- Added backend set-up for merging capabilities
 
 ## [0.0.3 (Iteration 4)] - 2020-04-03
 
