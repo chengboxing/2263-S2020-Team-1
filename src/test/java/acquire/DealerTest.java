@@ -29,7 +29,7 @@ public class DealerTest {
 
     @Test
     public void moveTurnTest() {
-        Dealer d = new Dealer();
+        Dealer d = Dealer.getDealerInstance();
         Player[] players = new Player[3];
         for (int i = 0; i < 3; i++) {
             players[i] = new Player(Integer.toString(i));
