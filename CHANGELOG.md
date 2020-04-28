@@ -7,6 +7,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.4 (Iteration 5)] - 2020-04-17
+
+### Added
+
+- Added MergeHandler Funcion
+- Added ability to have tiles in hand
+- Added ability to place tiles
+- Added ability to create chains
+- Added ability for new tiles to be placed into adjacent chains
+- Added backend set-up for merging capabilities
+
+## [0.0.3 (Iteration 4)] - 2020-04-03
+
+### Added
+
+- Added additional Tests to most classes
+- Set up Travic CI and Build File
+- Created Circularly linked listlike Structure for Player order
+- Added a start screen, working on functionality
+- Added Basic Dealer Funcion
+
 
 ## [0.0.2 (Iteration 3)] - 2020-03-06
 
@@ -30,6 +51,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
                     Fixed for any bug fixes.
                     Security in case of vulnerabilities.
                 
-[unreleased]: https://github.com/cs3321isu/2263-S2020-Team-1/compare/v0.0.2(Iteration3)...HEAD
+[unreleased]: https://github.com/cs3321isu/2263-S2020-Team-1/compare/v0.0.4(Iteration5)...HEAD
+[0.0.4 (Iteration 5)]: https://github.com/cs3321isu/2263-S2020-Team-1/compare/v0.0.3(Iteration4)...v0.0.4(Iteration5)
+[0.0.3 (Iteration 4)]: https://github.com/cs3321isu/2263-S2020-Team-1/compare/v0.0.2(Iteration3)...v0.0.3(Iteration4)
 [0.0.2 (Iteration 3)]: https://github.com/cs3321isu/2263-S2020-Team-1/compare/v0.0.1...v0.0.2(Iteration3)
 [0.0.1]: https://github.com/cs3321isu/2263-S2020-Team-1/releases/tag/v0.0.1                  
