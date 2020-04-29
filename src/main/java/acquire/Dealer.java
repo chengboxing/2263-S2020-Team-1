@@ -19,10 +19,10 @@ public class Dealer {
     }
 
     private Dealer(){
+        pile = new LinkedList<Tile>();
         //creates the pile
         for (char c = 'A'; c < 'J'; c++){
             for (int r = 1; r < 13; r++){
-                //stores the tiles in a 2d array
                 pile.add(factory.getTile( (c +Integer.toString(r))));
                 //System.out.println(c + Integer.toString(r) + "was created");
 

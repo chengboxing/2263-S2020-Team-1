@@ -6,7 +6,7 @@ import java.util.HashMap;
 
 public class Board {
     private Tile[][] tiles = new Tile[9][12];
-    private Chain[] activeChains = new Chain[7];
+    private Chain[] activeChains = new Chain[8];
     private TileFactory factory = TileFactory.getTileFactory();
 
     public Board(){
@@ -24,7 +24,11 @@ public class Board {
     public Tile getTile(String s){
         int x = (s.charAt(0) - 65);
         int y = Integer.parseInt(s.substring(1)) -1 ;
-        return this.tiles[x][y];
+        if ((x >= 0 && y >= 0) && (x<9 && y< 12)) {
+            return this.tiles[x][y];
+        }else{
+            return null;
+        }
     }
 
 
@@ -37,14 +41,27 @@ public class Board {
     }
 
     //placeTile will call this if the placed tile would cause a merge
-    private void mergeChains(){
-
+    public boolean mergeChains(Tile t1, Tile t2) {
+        if (t1.getChain() != null && t2.getChain() != null) {
+            int chain1size = t1.getChain().chainSize();
+            int chain2size = t2.getChain().chainSize();
+            if(chain1size > chain2size){
+                t2.getChain().merge(t1.getChain());
+            }else{
+                t1.getChain().merge(t2.getChain());
+            }
+        }else if (t1.getChain() == null && t2.getChain() == null){
+            return true;
+        }else if (t1.getChain() == null){
+            t2.getChain().addTile(t1);
+        }else if (t2.getChain() == null){
+            t1.getChain().addTile(t2);
+        }
+        return false;
     }
 
-    public void addChain(String n, Color c, Tile[] tiles, int chainNum){
-        if(getActiveChains().length <= 7){
-            this.activeChains[getActiveChains().length +1] = new Chain(n, c, tiles, chainNum);
-        }
+    public void addChain(String n, Color c, int chainNum){
+            this.activeChains[chainNum] = new Chain(n, c, chainNum);
     }
 
     public Chain[] getActiveChains(){

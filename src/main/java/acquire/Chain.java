@@ -2,6 +2,7 @@ package acquire;
 
 import java.util.LinkedList;
 import javafx.scene.paint.Color;
+import sun.awt.image.ImageWatched;
 
 public class Chain {
     private String name;
@@ -9,16 +10,14 @@ public class Chain {
     private LinkedList tilesInChain;
     private int stocksOwned;
     private Color chainColor;
+    private boolean hasButton = false;
 
 
-    public Chain(String n, Color c, Tile[] tiles, int chainNum){
+    public Chain(String n, Color c, int chainNum){
         this.name = n;
         this.chainColor = c;
         this.chainNumber = chainNum;
-        for (Tile tile: tiles
-             ) {
-            tilesInChain.add(tile);
-        }
+        this.tilesInChain = new LinkedList();
     }
 
     //This method checks to see if stocks are available under a certain chain and can be sold to the player.
@@ -43,8 +42,11 @@ public class Chain {
         return this.name;
     }
 
+    public LinkedList<Tile> getTilesInChain(){
+        return this.tilesInChain;
+    }
     public void addTile(Tile t){
-        t.changeChain(this.chainNumber);
+        t.changeChain(this.chainNumber, this);
         this.tilesInChain.add(t);
     }
 

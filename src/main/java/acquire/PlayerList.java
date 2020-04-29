@@ -144,6 +144,9 @@ public class PlayerList <E> {
     }
 
     public Player getCurrent(){
+        if(current == null){
+            current = this.head;
+        }
         return (Player) this.current.getPlayer();
     }
 }

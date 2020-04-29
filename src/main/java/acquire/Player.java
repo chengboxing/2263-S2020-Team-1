@@ -7,7 +7,7 @@ public class Player {
   
   private String ID;
   private int money;
-  private List<Tile> hand;
+  private LinkedList<Tile> hand;
   private int stock;
   private int share;
   private Dealer d;
@@ -18,7 +18,7 @@ public class Player {
     this.ID = ID;
     this.money = 6000; //$6000 is the starting cash
       this.d = Dealer.getDealerInstance();
-
+      this.hand = new LinkedList<Tile>();
       for (int i = 0; i < 6; i++) {
           hand.add(d.dealTile());
       }
@@ -59,7 +59,7 @@ public class Player {
       return this.money;
     }
 
-    public List<Tile> getHand(){
+    public LinkedList<Tile> getHand(){
       return this.hand;
     }
 
