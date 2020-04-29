@@ -27,13 +27,13 @@ public class PlayerTest {
     public void negativeNetWorthTest(){
         Player p = new Player("p");
         int subtraction = p.getWorth();
-        p.subtractWorth(subtraction + 100);
+        p.subtractMoney(subtraction + 100);
         assertEquals("Was able to get a negative worth", 0, p.getWorth());
     }
 
     @Test
     public void maxTiles(){
-        Dealer d = new Dealer();
+        Dealer d = Dealer.getDealerInstance();
         fail();
     }
 }
