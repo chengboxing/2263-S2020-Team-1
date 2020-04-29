@@ -234,6 +234,7 @@ public class Driver extends Application {
                 b.setTranslateX(100 + (displacement * 45));
                 b.setTranslateY(470);
                 displacement++;
+                buttons2.add(b);
                 root.getChildren().addAll(b);
                 b.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
@@ -284,16 +285,14 @@ public class Driver extends Application {
         tile.setTranslateX((num - 1) * 50);
         tile.setTranslateY((t.getLocation().charAt(0) - 65) * 50);
         root.getChildren().add(tile);
-        record.add(t.getLocation());
-        blackTiles.add(t.getLocation());
+        record.add(t);
+        blackTiles.add(t);
 
     }
 
     List<Color> clist = new ArrayList<>();
     private void checkNeighboringTiles(Tile tile) {
         String s = tile.getLocation();
-        for (int j = 0; j < record.size(); j++) {
-            String str = (String) record.get(j);
             char c = s.charAt(0);
             int num = Integer.parseInt(s.substring(1));
 
@@ -303,40 +302,29 @@ public class Driver extends Application {
             Tile str4 = board.getTile((c) + Integer.toString(num - 1));
 
             if (checkForChains(tile, str1, str2, str3, str4 )== false ){
-                buttonCheck();
-                if (buttons1.isEmpty()){
+                if (!board.canCreateNewStock()){
                     buttons2.forEach(button -> button.setDisable(false));
-                    break;
                 }
                 if (record.contains(str1)) {
                     if(board.mergeChains(tile, str1)){
                         newChain(tile, str1);
                     }
-                    buttons2.forEach(button -> button.setDisable(true));
-                    break;
                 }
                 if (record.contains(str2)) {
                     if(board.mergeChains(tile, str2)){
                         newChain(tile, str2);
                     }
-                    buttons2.forEach(button -> button.setDisable(true));
-                    break;
                 }
                 if (record.contains(str3)) {
                     if(board.mergeChains(tile, str3)){
                         newChain(tile, str3);
                     }
-                    buttons2.forEach(button -> button.setDisable(true));
-                    break;
                 }
                 if (record.contains(str4)) {
                     if(board.mergeChains(tile, str4)){
                         newChain(tile, str4);
                     }
-                    buttons2.forEach(button -> button.setDisable(true));
-                    break;
                 }
-            }
         }
     }
 
@@ -417,6 +405,7 @@ public class Driver extends Application {
 
 
     private void newChain(Tile tile, Tile s1) {
+        buttons2.forEach(button -> button.setDisable(true));
         Text t = new Text();
         t.setText("New Chain");
         t.setTranslateY(520);
@@ -426,12 +415,12 @@ public class Driver extends Application {
 
         Chain[] chains = board.getActiveChains();
 
-        for (int i = 1; i < 8; i++) {
+        for (int i = 1; i < 7; i++) {
             if(chains[i].chainSize() == 0){
                 buttons1.get(i).setText(chains[i].getName());
                 buttons1.get(i).setTranslateX(100 + (i * 45));
                 buttons1.get(i).setTranslateY(540);
-                buttons1.get(i).setBackground(new Background(new BackgroundFill(c.get(i), CornerRadii.EMPTY, Insets.EMPTY)));
+                buttons1.get(i).setBackground(new Background(new BackgroundFill(chains[i].getColor(), CornerRadii.EMPTY, Insets.EMPTY)));
                 int finalI = i;
                 buttons1.get(i).setOnAction(new EventHandler<ActionEvent>() {
                     @Override

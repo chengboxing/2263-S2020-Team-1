@@ -68,6 +68,16 @@ public class Board {
         return this.activeChains;
     }
 
+    public boolean canCreateNewStock(){
+        boolean can = false;
+        for (Chain activeChain : activeChains) {
+            if(activeChain.chainSize() == 0){
+                can = true;
+            }
+        }
+        return can;
+    }
+
     public boolean canEnd(){
         //checks if end conditions are met
         return false;
