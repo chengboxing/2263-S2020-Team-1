@@ -42,7 +42,8 @@ public class Board {
 
     //placeTile will call this if the placed tile would cause a merge
     public boolean mergeChains(Tile t1, Tile t2) {
-        if (t1.getChain() != null && t2.getChain() != null) {
+
+        if ((t1.getChain() != null && t2.getChain() != null)&&(t1.getChain() != t2.getChain())) {
             int chain1size = t1.getChain().chainSize();
             int chain2size = t2.getChain().chainSize();
             if(chain1size > chain2size){
