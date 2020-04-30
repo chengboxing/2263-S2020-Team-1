@@ -50,5 +50,9 @@ public class Chain {
         this.tilesInChain.add(t);
     }
 
+    public Color getColor(){
+        return this.chainColor;
+    }
+
 
 }
