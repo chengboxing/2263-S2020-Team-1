@@ -182,14 +182,13 @@ public class Driver extends Application {
         if(this.board == null){
             this.board = new Board();
         }
-        this.board.addChain("mergeChain", Color.BLACK,  0);
-        this.board.addChain("T", Color.YELLOW,  1);
-        this.board.addChain("I", Color.PINK,  2);
-        this.board.addChain("C", Color.LIGHTBLUE, 3);
-        this.board.addChain("W", Color.BROWN, 4);
-        this.board.addChain("L", Color.RED, 5);
-        this.board.addChain("F", Color.GREEN,  6);
-        this.board.addChain("A", Color.BLUE,   7);
+        this.board.addChain("T", Color.YELLOW,  0);
+        this.board.addChain("I", Color.PINK,  1);
+        this.board.addChain("C", Color.LIGHTBLUE, 2);
+        this.board.addChain("W", Color.BROWN, 3);
+        this.board.addChain("L", Color.RED, 4);
+        this.board.addChain("F", Color.GREEN,  5);
+        this.board.addChain("A", Color.BLUE,   6);
 
         //split button outside of chain class. Draw a button per chain that uses the info it needs from each chain (if possible)
 //        txt.add("T"); txt.add("I"); txt.add("C"); txt.add("W"); txt.add("L"); txt.add("F"); txt.add("A");
@@ -242,10 +241,8 @@ public class Driver extends Application {
                         placeBlackTile(c, t);
                         checkNeighboringTiles(t);
                         //tiles[finalI] = replaceTile(tilesUsed).getLocation();
-                        for(Map.Entry<Tile, Button> entry : buttonDisplay.entrySet()){
-                            Button button = entry.getValue();
-                            root.getChildren().removeAll(button);
-                        }
+                            root.getChildren().removeAll(buttons2);
+
                         loop(tilesUsed);
                     }
                 });
@@ -304,6 +301,7 @@ public class Driver extends Application {
             if (checkForChains(tile, str1, str2, str3, str4 )== false ){
                 if (!board.canCreateNewStock()){
                     buttons2.forEach(button -> button.setDisable(false));
+                    return;
                 }
                 if (record.contains(str1)) {
                     if(board.mergeChains(tile, str1)){
@@ -366,15 +364,16 @@ public class Driver extends Application {
         for (int i = 0; i < chains.length; i++) {
             LinkedList<Tile> chainTiles = chains[i].getTilesInChain();
             if(chainTiles != null && (chainTiles.contains(s1) || chainTiles.contains(s2) || chainTiles.contains(s3) || chainTiles.contains(s4))){
-                text = new Text(t.getLocation());
-                TileDrawing tile = new TileDrawing(t);
-                blackTiles.remove(t.getLocation());
+                chains[i].addTile(s);
+                text = new Text(s.getLocation());
+                TileDrawing tile = new TileDrawing(s);
+                blackTiles.remove(s.getLocation());
                 int num1 = Integer.parseInt(str.substring(1));
                 tile.setTranslateX((num1 - 1) * 50);
                 tile.setTranslateY((str.charAt(0) - 65) * 50);
                 root.getChildren().add(tile);
-                Tile[] blacks = checkBlackTiles(chains[i], t.getLocation());
-                board.getActiveChains()[i].addTile(blacks[i]);
+                //Tile[] blacks = checkBlackTiles(chains[i], s.getLocation());
+                board.getActiveChains()[i].addTile(s);
                 return true;
             }
         }
@@ -415,7 +414,7 @@ public class Driver extends Application {
 
         Chain[] chains = board.getActiveChains();
 
-        for (int i = 1; i < 7; i++) {
+        for (int i = 0; i < chains.length; i++) {
             if(chains[i].chainSize() == 0){
                 buttons1.get(i).setText(chains[i].getName());
                 buttons1.get(i).setTranslateX(100 + (i * 45));
@@ -428,34 +427,23 @@ public class Driver extends Application {
                         root.getChildren().removeAll(buttons1);
                         createChain(tile, s1, chains[finalI]);
                         buttons2.forEach(button -> button.setDisable(false));
+                        t.setText(null);
                     }
                 });
+            }else{
+                buttons1.get(i).setDisable(true);
             }
         }
-
-//        for (int i = 0; i< buttons1.size(); i++) {
-//            buttons1.get(i).setText(txt.get(i));
-//            buttons1.get(i).setTranslateX(100 + (i * 45));
-//            buttons1.get(i).setTranslateY(540);
-//            buttons1.get(i).setBackground(new Background(new BackgroundFill(c.get(i), CornerRadii.EMPTY, Insets.EMPTY)));
-//
-//            int finalI = i;
-//            buttons1.get(i).setOnAction(new EventHandler<ActionEvent>() {
-//                @Override
-//                public void handle(ActionEvent e) {
-//                    root.getChildren().removeAll(buttons1);
-//                    createChain(s1, tile.getLocation(), c.get(finalI));
-//                    buttons2.forEach(button -> button.setDisable(false));
-//                }
-//            });
-//        }
         root.getChildren().addAll(buttons1);
 
     }
 
     private void createChain(Tile one, Tile two, Chain chain) {
+        chain.addTile(one);
+        chain.addTile(two);
+
         text = new Text(one.getLocation());
-        TileDrawing tile1 = new TileDrawing(t);
+        TileDrawing tile1 = new TileDrawing(one);
         blackTiles.remove(t.getLocation());
         int num1 = Integer.parseInt(one.getLocation().substring(1));
         tile1.setTranslateX((num1 - 1) * 50);
@@ -463,15 +451,12 @@ public class Driver extends Application {
         root.getChildren().add(tile1);
 
         text = new Text(t.getLocation());
-        TileDrawing tile2 = new TileDrawing(t);
+        TileDrawing tile2 = new TileDrawing(two);
         blackTiles.remove(t.getLocation());
         int num2 = Integer.parseInt(two.getLocation().substring(1));
         tile2.setTranslateX((num2 - 1) * 50);
         tile2.setTranslateY((two.getLocation().charAt(0) - 65) * 50);
         root.getChildren().add(tile2);
-
-        chain.addTile(one);
-        chain.addTile(two);
 
     }
 
@@ -563,20 +548,12 @@ public class Driver extends Application {
             this.tile = t;
             Rectangle border = new Rectangle(50, 50);
             //Color of Tile is set to white and the outline is set to black.
-            border.setFill(Color.WHITE);
+            border.setFill(t.getColor());
             border.setStroke(Color.BLACK);
 
             //The object is added to the Pane's children list.
             getChildren().addAll(border, text);
 
-            if (t.getLocation().equals(getLocation())) {
-                border.setFill(t.getColor());
-            }
-
-        }
-
-        public String getLocation() {
-            return tile.getLocation();
         }
     }
 

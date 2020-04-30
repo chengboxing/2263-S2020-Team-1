@@ -16,8 +16,8 @@ public class Tile {
     public Tile(String x){
         this.locationX = String.valueOf(x.charAt(0));
         this.locationY = String.valueOf(x.subSequence(1, x.length()));
-        //0 is the null chain value
-        this.tiletype = tf.getTileType(0);
+        //10 is the black chain value
+        this.tiletype = tf.getTileType(10);
     }
 
     public String getLocation(){
