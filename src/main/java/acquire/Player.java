@@ -1,5 +1,6 @@
 package acquire;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -7,8 +8,8 @@ public class Player {
   
   private String ID;
   private int money;
-  private LinkedList<Tile> hand;
-  private int stock;
+  private LinkedList<Tile> hand = new LinkedList<Tile>();
+  private HashMap<Chain, Integer> stock = new HashMap<Chain, Integer>();
   private int share;
   private Dealer d;
   
@@ -33,16 +34,29 @@ public class Player {
         // Players will get money from the bank
         return money;
     }
-  
+
+    public int getOwnedStocks(Chain chain){
+      if (stock.get(chain)!= null) {
+          return stock.get(chain);
+      }
+      else return 0;
+    }
+
+    public void buyShare(Chain chain, Integer i){
+      if (stock.containsKey(chain)==false){
+          stock.put(chain, 0);
+      }
+      if (stock.get(chain)!= null) {
+          int n = stock.get(chain);
+          stock.replace(chain, n + i);
+      }
+    }
+
   private int holdShare() {
         // Players own their share
         return share;
     }
-  
-  public int buyShare() {
-        // Players can purchase share
-        return share;
-    }
+
   
   private int tradeShare() {
         // Players can trade shares

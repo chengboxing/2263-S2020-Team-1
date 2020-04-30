@@ -140,7 +140,7 @@ public class PlayerList <E> {
             this.current = this.head;
         }
 
-        return this.current;
+        return this.current.getPlayer();
     }
 
     public Player getCurrent(){
