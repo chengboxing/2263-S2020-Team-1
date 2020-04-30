@@ -10,12 +10,9 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.ChoiceBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -155,18 +152,18 @@ public class Driver extends Application {
         table1.setPrefSize(300, 150);
         table1.setTranslateX(650);
         table1.setTranslateY(50);
-        TableColumn<Player, String> firstNameCol = new TableColumn<>("");
-        TableColumn<Player, String> lastNameCol = new TableColumn<>("Cash");
-        TableColumn<Player, String> emailCol = new TableColumn<>("Net");
+        TableColumn<Player, String> playerNameCol = new TableColumn<>("");
+        TableColumn<Player, String> cashCol = new TableColumn<>("Cash");
+        TableColumn<Player, String> netCol = new TableColumn<>("Net");
 
-        firstNameCol.setCellValueFactory(new PropertyValueFactory<>("ID"));
-        lastNameCol.setCellValueFactory(new PropertyValueFactory<>("money"));
-        emailCol.setCellValueFactory(new PropertyValueFactory<>("money"));
+        playerNameCol.setCellValueFactory(new PropertyValueFactory<>("ID"));
+        cashCol.setCellValueFactory(new PropertyValueFactory<>("money"));
+        netCol.setCellValueFactory(new PropertyValueFactory<>("money"));
 
         table1.setItems(getPlayer());
 
         //The columns are added to the table.
-        table1.getColumns().addAll(firstNameCol, lastNameCol, emailCol);
+        table1.getColumns().addAll(playerNameCol, cashCol, netCol);
         //The columns are set to sit the size of the table.
         table1.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
@@ -206,15 +203,48 @@ public class Driver extends Application {
         table2.getColumns().addAll(available, chainSize, price);
         table2.setColumnResizePolicy( TableView.CONSTRAINED_RESIZE_POLICY );
 
+
+        first.setCellFactory(column -> {
+            return new TableCell<Table2, String>() {
+                @Override
+                protected void updateItem(String item, boolean empty) {
+                    super.updateItem(item, empty);
+
+                    if (item == null || empty) {
+                        setText(null);
+                        setStyle("");
+                    } else {
+                        setText(item);
+                        Table2 name = getTableView().getItems().get(getIndex());
+
+                        if (name.chainName.equals("T")) { setStyle("-fx-background-color: yellow"); }
+                        if (name.chainName.equals("I")) { setStyle("-fx-background-color: pink"); }
+                        if (name.chainName.equals("C")) { setStyle("-fx-background-color: #add8e6"); }
+                        if (name.chainName.equals("W")) { setStyle("-fx-background-color: brown"); }
+                        if (name.chainName.equals("L")) { setStyle("-fx-background-color: red"); }
+                        if (name.chainName.equals("F")) { setStyle("-fx-background-color: green"); }
+                        if (name.chainName.equals("A")) { setStyle("-fx-background-color: blue"); }
+                        else {
+                            if(getTableView().getSelectionModel().getSelectedItems().contains(name))
+                                setTextFill(Color.WHITE);
+                            else setTextFill(Color.BLACK);
+                        }
+                    }
+                }
+            };
+        });
+
         root.getChildren().add(table2);
 
     }
 
+
+    Table2 table;
     private ObservableList<Table2> getTable2Items(Chain[] chains) {
         ObservableList<Table2> items = FXCollections.observableArrayList();
-        for (int i = 1; i<chains.length; i++){
-            Table2 t = new Table2(chains[i]);
-            items.add(t);
+        for (int i = 0; i<chains.length; i++){
+            table = new Table2(chains[i]);
+            items.add(table);
         }
 
         return items;
@@ -228,13 +258,14 @@ public class Driver extends Application {
         private int chainSize;
         private int price;
 
+
+        PlayerList l = d.getPlayerList();
+        LinkedList<Player> temp = l.getList();
+        Player p = temp.get(0);
         public Table2(Chain c){
             chain = c;
             chainName = chain.getName();
             chainSize = chain.chainSize();
-            PlayerList l = d.getPlayerList();
-            LinkedList<Player> temp = l.getList();
-            Player p = temp.get(0);
             availableStocks = 25 - chain.chainSize();
             playerStocks = p.getOwnedStocks(c);
             price = chainSize * 100;
@@ -247,7 +278,14 @@ public class Driver extends Application {
         public int getPrice(){ return price; }
         public int getAvailableStocks() { return availableStocks; }
 
+        public void updateTable2(){
+            this.chainSize = chain.chainSize();
+            this.playerStocks = p.getOwnedStocks(chain);
+        }
+
     }
+
+
 
 
     public ObservableList<Player> getPlayer(){
@@ -262,19 +300,7 @@ public class Driver extends Application {
 
 
 
-    List<String> T_tiles = new ArrayList<>();
-    List<String> I_tiles = new ArrayList<>();
-    List<String> C_tiles = new ArrayList<>();
-    List<String> W_tiles = new ArrayList<>();
-    List<String> L_tiles = new ArrayList<>();
-    List<String> F_tiles = new ArrayList<>();
-    List<String> A_tiles = new ArrayList<>();
 
-
-//    List<List<String>> chains = new ArrayList<>();
-
-    List<String> txt = new ArrayList<>();
-    List<Color> c = new ArrayList<>();
     List<Button> buttons1 = new ArrayList<>();
     List<Button> buttons2 = new ArrayList<>();
 
@@ -290,10 +316,7 @@ public class Driver extends Application {
         this.board.addChain("F", Color.GREEN,  5);
         this.board.addChain("A", Color.BLUE,   6);
 
-        //split button outside of chain class. Draw a button per chain that uses the info it needs from each chain (if possible)
-//        txt.add("T"); txt.add("I"); txt.add("C"); txt.add("W"); txt.add("L"); txt.add("F"); txt.add("A");
-//        c.add(Color.YELLOW); c.add(Color.PINK); c.add(Color.LIGHTBLUE); c.add(Color.BROWN);
-//        c.add(Color.RED); c.add(Color.GREEN); c.add(Color.BLUE);
+
         Button b1; Button b2; Button b3; Button b4; Button b5; Button b6; Button b7;
         buttons1.add(b1 = new Button()); buttons1.add(b2 = new Button()); buttons1.add(b3 = new Button());
         buttons1.add(b4= new Button()); buttons1.add(b5= new Button()); buttons1.add(b6= new Button());
@@ -315,11 +338,6 @@ public class Driver extends Application {
 
     public void loop(LinkedList tilesUsed) {
 
-//        for (int f = 0; f < 6; f++) {
-//            if (!tilesUsed.contains(tiles[f])) {
-//                tilesUsed.add(tiles[f]);
-//            }
-//        }
 
         Player c = d.getPlayer();
         List<Tile> playerTiles = c.getHand();
@@ -339,87 +357,152 @@ public class Driver extends Application {
                     public void handle(ActionEvent e) {
                         placeBlackTile(c, t);
                         checkNeighboringTiles(t);
-                        //tiles[finalI] = replaceTile(tilesUsed).getLocation();
                             root.getChildren().removeAll(buttons2);
-
+                            createTables(root);
+                            sellStocks();
+                            createTables(root);
                         loop(tilesUsed);
                     }
                 });
             }
 
-//        Button b1; Button b2; Button b3; Button b4; Button b5; Button b6;
-//        buttons2.add(b1 = new Button()); buttons2.add(b2 = new Button()); buttons2.add(b3 = new Button());
-//        buttons2.add(b4= new Button()); buttons2.add(b5= new Button()); buttons2.add(b6= new Button());
-//
-//        for (int i = 0; i < buttons2.size(); i++){
-//            buttons2.get(i).setText(tiles[i]);
-//            buttons2.get(i).setTranslateX(100 + (i * 45));
-//            buttons2.get(i).setTranslateY(470);
-//
-//            int finalI = i;
-//            buttons2.get(i).setOnAction(new EventHandler<ActionEvent>() {
-//                @Override
-//                public void handle(ActionEvent e) {
-//                    placeBlackTile(tiles, finalI);
-//                    checkNeighboringTiles(tiles, finalI);
-//                    tiles[finalI] = replaceTile(tilesUsed).getLocation();
-//                    //root.getChildren().removeAll(buttons2);
-//                    loop(tilesUsed, tiles);
-//                }
-//            });
-//        }
-//        root.getChildren().addAll(buttons2);
-
     }
 
-//    Text t_stocks;
-//    HBox hboxForButtons;
-//    private void sellStocks(){
-//        t_stocks = new Text();
-//        t_stocks.setText("Sell Stocks");
-//        t_stocks.setTranslateY(570);
-//        t_stocks.setTranslateX(100);
-//        root.getChildren().add(t_stocks);
-//
-//
-//        List<String> chainAvailableForStocks = new ArrayList<>();
-//        if (T_tiles.size()>0){ chainAvailableForStocks.add("T"); }
-//        if (I_tiles.size()>0){ chainAvailableForStocks.add("I"); }
-//        if (C_tiles.size()>0){ chainAvailableForStocks.add("C"); }
-//        if (W_tiles.size()>0){ chainAvailableForStocks.add("W"); }
-//        if (L_tiles.size()>0){ chainAvailableForStocks.add("L"); }
-//        if (F_tiles.size()>0){ chainAvailableForStocks.add("F"); }
-//        if (A_tiles.size()>0){ chainAvailableForStocks.add("A"); }
-//
-//
-//        hboxForButtons = new HBox();
-//        hboxForButtons.setTranslateY(580);
-//        hboxForButtons.setTranslateX(100);
-//        for (int i = 0; i<chainAvailableForStocks.size(); i++){
-//            Button b = new Button();
-//            b.setText(chainAvailableForStocks.get(i));
-//            int finalI = i;
-//            b.setOnAction((ActionEvent)->{
-//                root.getChildren().removeAll(hboxForButtons);
-//                updateStockValues(chainAvailableForStocks.get(finalI));
-//            });
-//            hboxForButtons.getChildren().add(b);
-//        }
-//        root.getChildren().add(hboxForButtons);
-//
-//    }
+    Text t_stocks;
+    Text stocks;
+    HBox hboxForButtons;
+    HBox stockHbox;
+    LinkedList stockInt = new LinkedList();
+    private void sellStocks(){
+        totalPriceStocks=0;
+        cashLeft = 0;
 
-//    int tStocks;int iStocks;int cStocks;int wStocks;int lStocks;int fStocks;int aStocks;
-//    private void updateStockValues(String s){
-//        if (s.equals("T")){ tStocks+=1; }
-//        if (s.equals("I")){ iStocks+=1; }
-//        if (s.equals("C")){ cStocks+=1; }
-//        if (s.equals("W")){ wStocks+=1; }
-//        if (s.equals("L")){ lStocks+=1; }
-//        if (s.equals("F")){ fStocks+=1; }
-//        if (s.equals("A")){ aStocks+=1; }
-//    }
+        t_stocks = new Text();
+        t_stocks.setText("Sell Stocks");
+        t_stocks.setTranslateY(580);
+        t_stocks.setTranslateX(100);
+        root.getChildren().add(t_stocks);
 
+        stocks = new Text();
+        stocks.setText("Stocks");
+        stocks.setTranslateY(625);
+        stocks.setTranslateX(100);
+        root.getChildren().add(stocks);
+
+        Chain[] chains = board.getActiveChains();
+
+        hboxForButtons = new HBox();
+        hboxForButtons.setTranslateY(590);
+        hboxForButtons.setTranslateX(100);
+        stockHbox = new HBox();
+        stockHbox.setTranslateY(635);
+        stockHbox.setTranslateX(100);
+        AtomicInteger stockHboxSize = new AtomicInteger();
+        int disabledChains = 0;
+        PlayerList l = d.getPlayerList();
+        LinkedList<Player> temp = l.getList();
+        Player p = temp.get(0);
+        for (int i = 0; i< chains.length; i++){
+            Button b = new Button();
+            b.setText(chains[i].getName());
+
+            if (chains[i].chainSize()==0){
+                b.setDisable(true);
+                disabledChains+=1;
+            }
+
+            int finalI = i;
+            b.setOnAction((ActionEvent)->{
+                if (stockHboxSize.get() < 3 && p.getMoney() >=100){
+                    Button b2 = new Button();
+                    b2.setText(chains[finalI].getName());
+                    b2.setBackground((new Background(new BackgroundFill(chains[finalI].getColor(), CornerRadii.EMPTY, Insets.EMPTY))));
+                    stockHbox.getChildren().add(b2);
+                    addStockInt(finalI);
+                    root.getChildren().removeAll(box);
+                    stockHboxSize.addAndGet(1);
+                    updateCostForStocks(1);
+                    if (stockHboxSize.get() == 3){
+                        hboxForButtons.getChildren().subList(0, 7).forEach(button -> button.setDisable(true));
+                    }
+                }
+                else{
+                    hboxForButtons.getChildren().subList(0, 7).forEach(button -> button.setDisable(true));
+                }
+            });
+            hboxForButtons.getChildren().add(b);
+
+        }
+
+        Button b = new Button();
+        b.setText("Ok");
+        hboxForButtons.getChildren().add(b);
+        b.setOnAction((ActionEvent)->{
+                t_stocks.setText(null);
+                stocks.setText(null);
+                root.getChildren().removeAll(hboxForButtons);
+                root.getChildren().removeAll(stockHbox);
+                root.getChildren().removeAll(box);
+            p.subtractMoney(totalPriceStocks);
+
+        });
+
+
+        root.getChildren().add(hboxForButtons);
+        root.getChildren().add(stockHbox);
+
+
+        for (int i = 0; i< stockInt.size(); i++){
+            p.buyShare(chains[(int) stockInt.get(i)], 1);
+        }
+        createTables(root);
+
+        stockInt = new LinkedList();
+
+        if (disabledChains ==7){
+            root.getChildren().removeAll(hboxForButtons);
+            t_stocks.setText(null);
+            stocks.setText(null);
+        }
+    }
+
+    int totalPriceStocks=0;
+    int cashLeft = 0;
+    VBox box = new VBox(10);
+    private void updateCostForStocks(int i) {
+        box = new VBox(10);
+        box.setTranslateX(350);
+        box.setTranslateY(600);
+        totalPriceStocks += (i*100);
+        PlayerList l = d.getPlayerList();
+        LinkedList<Player> temp = l.getList();
+        Player p = temp.get(0);
+        int cash = p.getMoney();
+        cashLeft = cash - totalPriceStocks;
+
+        box.getChildren().addAll(createBorderedText1("Total Price =  " , totalPriceStocks));
+        box.getChildren().addAll(createBorderedText2("Cash Left =  " , cashLeft));
+        root.getChildren().addAll(box);
+    }
+
+    Text tP;
+    private Node createBorderedText1(String text, int i) {
+        final HBox hbox = new HBox();
+        tP= new Text(text + i );
+        hbox.getChildren().add(tP);
+        hbox.setStyle("-fx-border-color: black;");
+        return hbox ;
+    }
+    private Node createBorderedText2(String text, int i) {
+        final HBox hbox = new HBox();
+        hbox.getChildren().add(new Text(text + i));
+        hbox.setStyle("-fx-border-color: black;");
+        return hbox ;
+    }
+
+    private void addStockInt(int finalI) {
+        stockInt.add(finalI);
+    }
 
 
     Tile t;
@@ -450,7 +533,7 @@ public class Driver extends Application {
 
             if (checkForChains(tile, str1, str2, str3, str4 )== false ){
                 if (!board.canCreateNewStock()){
-                    buttons2.forEach(button -> button.setDisable(false));
+                    //buttons2.forEach(button -> button.setDisable(false));
                     return;
                 }
                 if (record.contains(str1)) {
@@ -476,37 +559,6 @@ public class Driver extends Application {
         }
     }
 
-//    static Queue<String> tiles;
-//    public Tile replaceTile(LinkedList tilesUsed) {
-//        bank(tilesUsed);
-//        String tile;
-//        if ((tile = getNextTile()) != null) {
-//            ;
-//        }
-//        Tile newTile = new Tile(tile);
-//        return newTile;
-//    }
-
-//    private void bank(List tilesUsed) {
-//        ArrayList s = new ArrayList();
-//        for (char c = 'A'; c < 'J'; c++) {
-//            for (int r = 0; r < 12; r++) {
-//                if (!tilesUsed.contains(c + Integer.toString(r + 1))) {
-//                    s.add(c + Integer.toString(r + 1));
-//                } } }
-//        Collections.shuffle(s, new Random());
-//        tiles = new ArrayDeque<>(s);
-//
-//    }
-//
-//    public String getNextTile() {
-//        if (tiles.isEmpty()) {
-//            return null;
-//        }
-//        return tiles.remove();
-//    }
-
-
 
     private boolean checkForChains(Tile s, Tile s1, Tile s2, Tile s3, Tile s4){
         Chain[] chains = board.getActiveChains();
@@ -522,39 +574,15 @@ public class Driver extends Application {
                 tile.setTranslateX((num1 - 1) * 50);
                 tile.setTranslateY((str.charAt(0) - 65) * 50);
                 root.getChildren().add(tile);
-                //Tile[] blacks = checkBlackTiles(chains[i], s.getLocation());
-                board.getActiveChains()[i].addTile(s);
                 return true;
             }
         }
-
-//        chains.add(T_tiles); chains.add(I_tiles); chains.add(C_tiles); chains.add(W_tiles); chains.add(L_tiles);
-//        chains.add(F_tiles); chains.add(A_tiles);
-
-//        clist.add(Color.YELLOW); clist.add(Color.PINK); clist.add(Color.LIGHTBLUE); clist.add(Color.BROWN);
-//        clist.add(Color.RED); clist.add(Color.GREEN); clist.add(Color.BLUE);
-//        for (int i = 0; i< chains.size(); i++) {
-//            if (chains.get(i).contains(s1) || chains.get(i).contains(s2) || chains.get(i).contains(s3) || chains.get(i).contains(s4)) {
-//                chains.get(i).add(s);
-//                t = board.getTile(s);
-//                text = new Text(t.getLocation());
-//                TileDrawing tile = new TileDrawing(t);
-//                blackTiles.remove(t.getLocation());
-//                int num1 = Integer.parseInt(s.substring(1));
-//                tile.setTranslateX((num1 - 1) * 50);
-//                tile.setTranslateY((s.charAt(0) - 65) * 50);
-//                root.getChildren().add(tile);
-//                checkBlackTiles(chains.get(i), clist.get(i), t.getLocation());
-//                return true;
-//            }
-//        }
         return false;
     }
 
 
 
     private void newChain(Tile tile, Tile s1) {
-        buttons2.forEach(button -> button.setDisable(true));
         Text t = new Text();
         t.setText("New Chain");
         t.setTranslateY(520);
@@ -576,7 +604,7 @@ public class Driver extends Application {
                     public void handle(ActionEvent e) {
                         root.getChildren().removeAll(buttons1);
                         createChain(tile, s1, chains[finalI]);
-                        buttons2.forEach(button -> button.setDisable(false));
+                        //buttons2.forEach(button -> button.setDisable(false));
                         t.setText(null);
                     }
                 });
@@ -611,82 +639,6 @@ public class Driver extends Application {
 
     }
 
-//    private void recordChainList(int i, String s1, String s2){
-//        String s = txt.get(i);
-//        if (s.equals("T")){
-//            T_tiles.add(s1); T_tiles.add(s2);
-//            checkBlackTiles(T_tiles, clist.get(0), s1);
-//            checkBlackTiles(T_tiles, clist.get(0), s2);
-//        }
-//        if (s.equals("I")){
-//            I_tiles.add(s1); I_tiles.add(s2);
-//            checkBlackTiles(I_tiles, clist.get(1), s1);
-//            checkBlackTiles(I_tiles, clist.get(1), s2);
-//        }
-//        if (s.equals("C")){
-//            C_tiles.add(s1); C_tiles.add(s2);
-//            checkBlackTiles(C_tiles, clist.get(2), s1);
-//            checkBlackTiles(C_tiles, clist.get(2), s2);
-//        }
-//        if (s.equals("W")){
-//            W_tiles.add(s1); W_tiles.add(s2);
-//            checkBlackTiles(W_tiles, clist.get(3), s1);
-//            checkBlackTiles(W_tiles, clist.get(3), s2);
-//        }
-//        if (s.equals("L")){
-//            L_tiles.add(s1); L_tiles.add(s2);
-//            checkBlackTiles(L_tiles, clist.get(4), s1);
-//            checkBlackTiles(L_tiles, clist.get(4), s2);
-//        }
-//        if (s.equals("F")){
-//            F_tiles.add(s1); F_tiles.add(s2);
-//            checkBlackTiles(F_tiles, clist.get(5), s1);
-//            checkBlackTiles(F_tiles, clist.get(5), s2);
-//        }
-//        if (s.equals("A")){
-//            A_tiles.add(s1); A_tiles.add(s2);
-//            checkBlackTiles(A_tiles, clist.get(6), s1);
-//            checkBlackTiles(A_tiles, clist.get(6), s2);
-//        }
-//
-//    }
-
-//    private void removeChainOption(int finalI){
-//        txt.remove(finalI);
-//        c.remove(finalI);
-//        buttons1.remove(finalI);
-//    }
-
-
-    private Tile[] checkBlackTiles(Chain c, String s){
-
-        Tile[] ret = new Tile[4];
-        char chr = s.charAt(0);
-        int num = Integer.parseInt(s.substring(1));
-
-        String str1 = (char)(chr + 1) + Integer.toString(num);
-        String str2 = (char)(chr - 1) + Integer.toString(num);
-        String str3 = (chr) + Integer.toString(num + 1);
-        String str4 = (chr) + Integer.toString(num - 1);
-
-        LinkedList<String> strings = new LinkedList();
-        strings.add(str1); strings.add(str2); strings.add(str3); strings.add(str4);
-
-        for (int i = 0; i< strings.size(); i++) {
-            if (blackTiles.contains(strings.get(i))) {
-                t = board.getTile(strings.get(i));
-                text = new Text(t.getLocation());
-                TileDrawing tile = new TileDrawing(t);
-                blackTiles.remove(t.getLocation());
-                int num1 = Integer.parseInt(strings.get(i).substring(1));
-                tile.setTranslateX((num1 - 1) * 50);
-                tile.setTranslateY((strings.get(i).charAt(0) - 65) * 50);
-                root.getChildren().add(tile);
-                ret[i] = t;
-            }
-        }
-        return ret;
-    }
 
 
     private class TileDrawing extends StackPane {
