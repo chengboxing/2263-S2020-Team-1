@@ -3,6 +3,8 @@ package acquire;
 // @author Austin Lyman
 // Code for Nodes taken from pages 126 and 127 in the book.
 
+import java.util.LinkedList;
+
 public class PlayerList <E> {
     private int size = 0;
     private Node head = null;
@@ -102,6 +104,21 @@ public class PlayerList <E> {
             }
 
         }
+    }
+
+    public LinkedList<Player> getList() {
+        LinkedList<Player> l = new LinkedList<Player>();
+        if (head == null) {
+            System.out.println("There is nothing in the list");
+        } else {
+            Node current = head;
+            for (int i = 0; i < size; i++) {
+                l.add((Player)current.getPlayer());
+                current = current.getNext();
+            }
+
+        }
+        return l;
     }
 
     private boolean sizeOk(int index){

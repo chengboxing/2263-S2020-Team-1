@@ -22,7 +22,23 @@ public class Chain {
 
     //This method checks to see if stocks are available under a certain chain and can be sold to the player.
     private boolean canSellStock(){
+        if (stocksOwned < 25){
+            return true;
+        }
         return false;
+    }
+
+    public void buyStocks(int i){
+        if (canSellStock()) {
+            stocksOwned += i;
+            if (stocksOwned > 25){
+                stocksOwned=25;
+            }
+        }
+    }
+
+    public int getStocks(){
+        return stocksOwned;
     }
     
     //This method merges two or more hotel chains into the one that is bigger.
@@ -53,6 +69,8 @@ public class Chain {
     public Color getColor(){
         return this.chainColor;
     }
+
+
 
 
 }
