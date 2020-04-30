@@ -62,8 +62,11 @@ public class Chain {
         return this.tilesInChain;
     }
     public void addTile(Tile t){
-        t.changeChain(this.chainNumber, this);
-        this.tilesInChain.add(t);
+        if(!this.tilesInChain.contains(t)){
+            t.changeChain(this.chainNumber, this);
+            this.tilesInChain.add(t);
+
+        }
     }
 
     public Color getColor(){

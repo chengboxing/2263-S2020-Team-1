@@ -10,7 +10,7 @@ public class Tile {
     private boolean canDeal = true;
     private boolean isPlayed = false;
     private TileType tiletype;
-    private Chain chain;
+    private Chain chain = null;
 
     //Constructor
     public Tile(String x){
@@ -50,6 +50,10 @@ public class Tile {
 
     public Chain getChain(){
         return this.chain;
+    }
+
+    public boolean isPlayed() {
+        return this.isPlayed;
     }
 
     public void changeChain(int chain, Chain c){
