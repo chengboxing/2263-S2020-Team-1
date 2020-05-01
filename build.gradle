@@ -7,7 +7,7 @@ plugins {
 group 'org.example'
 version '1.0-SNAPSHOT'
 
-sourceCompatibility = 1.8
+sourceCompatibility = 1.11
 
 javafx{
     version = "11.0.2"
@@ -21,6 +21,6 @@ repositories {
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }
-
-mainClassName = 'acquire.Driver'
-
+application {
+    mainClassName = 'acquire.main/acquire.Driver'
+}

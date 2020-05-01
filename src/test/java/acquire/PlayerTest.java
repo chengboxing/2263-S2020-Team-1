@@ -1,6 +1,11 @@
 package acquire;
 
+import javafx.scene.paint.Color;
 import org.junit.*;
+
+import java.util.Arrays;
+import java.util.LinkedList;
+
 import static org.junit.Assert.*;
 
 public class PlayerTest {
@@ -27,13 +32,63 @@ public class PlayerTest {
     public void negativeNetWorthTest(){
         Player p = new Player("p");
         int subtraction = p.getWorth();
-        p.subtractWorth(subtraction + 100);
+        p.subtractMoney(subtraction + 100);
         assertEquals("Was able to get a negative worth", 0, p.getWorth());
     }
 
     @Test
+    public void getHandMaxSizeTest(){
+        Player p = new Player("Player1");
+        LinkedList<Tile> l = p.getHand();
+        assertTrue(l.size()<=6);
+    }
+
+    @Test
+    public void playTileTest(){
+        Player p = new Player("Player1");
+        LinkedList<Tile> l = p.getHand();
+        Tile t = l.get(0);
+        p.playTile(t);
+        l = p.getHand();
+        assertNotEquals(t, l.get(0));
+    }
+
+    @Test
+    public void getStocksOwnedTest_1(){
+        Player p = new Player("Player1");
+        Board board = new Board();
+        board.addChain("T", Color.YELLOW,  1);
+        Chain[] chains = board.getActiveChains();
+        assertEquals(0, p.getOwnedStocks(chains[0]));
+    }
+
+    @Test
+    public void getStocksOwnedTest_2(){
+        Player p = new Player("Player1");
+        Board board = new Board();
+        board.addChain("T", Color.YELLOW,  0);
+        Chain[] chains = board.getActiveChains();
+        p.buyShare(chains[0], 2);
+        assertEquals(2, p.getOwnedStocks(chains[0]));
+
+        p.buyShare(chains[0], 2);
+        assertEquals(4, p.getOwnedStocks(chains[0]));
+    }
+
+    @Test(expected = NullPointerException.class)
+    public void getStocksOwnedTest_3(){
+        Player p = new Player("Player1");
+        Board board = new Board();
+        board.addChain("T", Color.YELLOW,  0);
+        Chain[] chains = board.getActiveChains();
+        System.out.println(Arrays.toString(chains));
+        p.buyShare(chains[0], null);
+    }
+
+
+    @Test
     public void maxTiles(){
-        Dealer d = new Dealer();
+        Dealer d = Dealer.getDealerInstance();
         fail();
     }
 }

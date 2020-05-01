@@ -8,15 +8,16 @@ public class Tile {
     private String locationX;
     private String locationY;
     private boolean canDeal = true;
-
+    private boolean isPlayed = false;
     private TileType tiletype;
+    private Chain chain = null;
 
     //Constructor
     public Tile(String x){
         this.locationX = String.valueOf(x.charAt(0));
         this.locationY = String.valueOf(x.subSequence(1, x.length()));
-        //0 is the null chain value
-        this.tiletype = tf.getTileType(0);
+        //10 is the black chain value
+        this.tiletype = tf.getTileType(10);
     }
 
     public String getLocation(){
@@ -28,7 +29,10 @@ public class Tile {
     }
 
     public Color getColor(){
-        return tiletype.getColor();
+        if(this.isPlayed) {
+            return tiletype.getColor();
+        }
+        return Color.WHITE;
     }
 
     public void setType(int ch){
@@ -41,10 +45,20 @@ public class Tile {
 
     public void play(){
         this.canDeal = false;
+        this.isPlayed = true;
     }
 
-    public void changeChain(int chain){
+    public Chain getChain(){
+        return this.chain;
+    }
+
+    public boolean isPlayed() {
+        return this.isPlayed;
+    }
+
+    public void changeChain(int chain, Chain c){
         this.tiletype = tf.getTileType(chain);
+        this.chain = c;
     }
 
 }
