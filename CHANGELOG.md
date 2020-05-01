@@ -11,8 +11,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Added MergeHandler Funcion
-- Added ability to have tiles in hand
 - Added Table displaying Chain information
 - Added ability to buy stocks
 - Added Table showing Player Worth
