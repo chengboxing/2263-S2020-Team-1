@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.5 (Iteration 6)] - 2020-05-01
+
+### Added
+
+- Added MergeHandler Funcion
+- Added ability to have tiles in hand
+
 ## [0.0.4 (Iteration 5)] - 2020-04-17
 
 ### Added
@@ -51,7 +58,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
                     Fixed for any bug fixes.
                     Security in case of vulnerabilities.
                 
-[unreleased]: https://github.com/cs3321isu/2263-S2020-Team-1/compare/v0.0.4(Iteration5)...HEAD
+[unreleased]: https://github.com/cs3321isu/2263-S2020-Team-1/compare/v0.0.5(Iteration6)...HEAD
+[0.0.5 (Iteration 6)]: https://github.com/cs3321isu/2263-S2020-Team-1/compare/v0.0.4(Iteration5)...v0.0.5(Iteration6)
 [0.0.4 (Iteration 5)]: https://github.com/cs3321isu/2263-S2020-Team-1/compare/v0.0.3(Iteration4)...v0.0.4(Iteration5)
 [0.0.3 (Iteration 4)]: https://github.com/cs3321isu/2263-S2020-Team-1/compare/v0.0.2(Iteration3)...v0.0.3(Iteration4)
 [0.0.2 (Iteration 3)]: https://github.com/cs3321isu/2263-S2020-Team-1/compare/v0.0.1...v0.0.2(Iteration3)
