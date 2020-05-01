@@ -26,20 +26,17 @@ public class BoardTest {
     }
 
     @Test
-    public void boardMaxChainTest(){
-        //create 7 chains
-        //attempt to create another, but will not get created
+    public void boardChainCreationTest(){
         Board board = new Board();
-        board.addChain("mergeChain", Color.BLACK,  0);
-        board.addChain("T", Color.YELLOW,  1);
-        board.addChain("I", Color.PINK,  2);
-        board.addChain("C", Color.LIGHTBLUE, 3);
-        board.addChain("W", Color.BROWN, 4);
-        board.addChain("L", Color.RED, 5);
-        board.addChain("F", Color.GREEN,  6);
-        board.addChain("A", Color.BLUE,   7);
+        board.addChain("T", Color.YELLOW,  0);
+        board.addChain("I", Color.PINK,  1);
+        board.addChain("C", Color.LIGHTBLUE, 2);
+        board.addChain("W", Color.BROWN, 3);
+        board.addChain("L", Color.RED, 4);
+        board.addChain("F", Color.GREEN,  5);
+        board.addChain("A", Color.BLUE,   6);
 
-        assertEquals(8, board.getActiveChains().length);
+        assertEquals(7, board.getActiveChains().length);
     }
 
     @Test(expected = ArrayIndexOutOfBoundsException.class)

@@ -7,13 +7,22 @@ import java.util.*;
 import static org.junit.Assert.*;
 
 public class DealerTest {
+    private Dealer d;
+
+    @Before
+    public void init(){
+        this.d = Dealer.getDealerInstance();
+    }
+
+    @After
+    public void close(){
+        d.reset();
+    }
 
     @Test
     public void dealAllTilesTest(){
         //deal 108 tiles
         //try to deal a 109th tile <-- dealAllTilesTest_2
-        //fail();
-        Dealer d = Dealer.getDealerInstance();
         LinkedList<Tile> l = new LinkedList<>();
         for (int i = 0; i<108; i++){
             l.add(d.dealTile());
@@ -23,7 +32,6 @@ public class DealerTest {
 
     @Test
     public void dealAllTilesTest_2(){
-        Dealer d = Dealer.getDealerInstance();
         LinkedList<Tile> l = new LinkedList<>();
         for (int i = 0; i<108; i++){
             l.add(d.dealTile());
@@ -36,8 +44,6 @@ public class DealerTest {
     public void duplicateTileDealtTest(){
         //deal all 108 tiles, and make sure there are no duplicates
         //fail();
-
-        Dealer d = Dealer.getDealerInstance();
         ArrayList<String> l = new ArrayList<>();
         for (int i = 0; i<108; i++){
             l.add(d.dealTile().getLocation());
@@ -55,7 +61,6 @@ public class DealerTest {
 
     @Test
     public void dealTileTest() {
-        Dealer dealer = Dealer.getDealerInstance();
 
         LinkedList pile = new LinkedList<Tile>();
         //creates the pile
@@ -65,7 +70,7 @@ public class DealerTest {
                 pile.add(c +Integer.toString(r));
             }
         }
-        Tile tile = dealer.dealTile();
+        Tile tile = d.dealTile();
         //System.out.println(tile.getLocation());
         for (char c = 'A'; c < 'J'; c++){
             for (int r = 1; r < 13; r++){
@@ -79,12 +84,12 @@ public class DealerTest {
 
     @Test
     public void moveTurnTest() {
-        Dealer d = Dealer.getDealerInstance();
         Player[] players = new Player[3];
         for (int i = 0; i < 3; i++) {
             players[i] = new Player(Integer.toString(i));
+            d.addPlayer(players[i]);
         }
-        for (int i = 0; i < 3; i++) {
+        for (int i = 2; i == 0; i--) {
             assertEquals(players[i], d.getPlayer());
             d.moveTurn();
         }
@@ -92,7 +97,6 @@ public class DealerTest {
 
     @Test
     public void addPlayerTest() {
-        Dealer d = Dealer.getDealerInstance();
         assertEquals(0, d.getPlayerList().size());
 
         d.addPlayer(new Player("p1"));
@@ -103,7 +107,6 @@ public class DealerTest {
 
     @Test
     public void getPlayerTest() {
-        Dealer d = Dealer.getDealerInstance();
         assertEquals(0, d.getPlayerList().size());
 
         d.addPlayer(new Player("p1"));

@@ -67,5 +67,9 @@ public class Dealer {
         return this.playerOrder;
     }
 
+    public void reset(){
+        Dealer.instance = new Dealer();
+    }
+
 
 }
